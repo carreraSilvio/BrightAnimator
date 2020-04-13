@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
 
-namespace BrightLib.Animation
+namespace BrightLib.Animation.Runtime
 {
 	public class PlayAudioClip : StateMachineBehaviour
 	{ 
@@ -20,9 +20,12 @@ namespace BrightLib.Animation
 		private bool _valid;
 		private bool _executed;
 
+		
+
 		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			Validate(animator, stateInfo);
+
 			_lastUpdateTime = Time.time;
 			_executed = false;
 		}
@@ -55,7 +58,6 @@ namespace BrightLib.Animation
 		{
 			if (!_valid) return;
 
-			//_source.clip = !useMultiple ? clip : clips[_clipIndex++ % clips.Length];
 			var currClip = !useMultiple ? clip : clips[_clipIndex++ % clips.Length];
 			_source.PlayOneShot(currClip);
 			_executed = true;
@@ -69,7 +71,7 @@ namespace BrightLib.Animation
 				_source = animator.GetComponent<AudioSource>();
 				if (_source == null)
 				{
-					Debug.LogWarning($"{animator.name}.{nameof(PlayAudioClip)}: No {nameof(AudioSource)} found on GameObject.");
+					Debug.LogWarning($"{animator.name}.{nameof(PlayAudioClip)}: No {nameof(AudioSource)} found on {animator.name}.");
 					return;
 				}
 			}
@@ -78,7 +80,7 @@ namespace BrightLib.Animation
 			{
 				if (clip == null)
 				{
-					Debug.LogWarning($"{animator.name}.{nameof(Animator)}.{nameof(PlayAudioClip)}: No {nameof(AudioClip)} added.");
+					Debug.LogWarning($"{animator.name}.{nameof(PlayAudioClip)}: No {nameof(AudioClip)} added.");
 					return;
 				}
 			}
@@ -86,12 +88,13 @@ namespace BrightLib.Animation
 			{
 				if (useMultiple && clips == null || clips.Length == 0)
 				{
-					Debug.LogWarning($"{animator.name}.{nameof(Animator)}.{nameof(PlayAudioClip)}: No {nameof(AudioClip)}s added.");
+					Debug.LogWarning($"{animator.name}.{nameof(PlayAudioClip)}: No {nameof(AudioClip)}s added.");
 					return;
 				}	
 			}
 			_valid = true;
 		}
+
 	}
 
 }

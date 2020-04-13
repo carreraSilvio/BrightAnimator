@@ -1,4 +1,4 @@
-﻿namespace BrightLib.Animation
+﻿namespace BrightLib.Animation.Runtime
 {
     public enum PlayCondition{OnEnter, OnUpdate, OnExit}
 }

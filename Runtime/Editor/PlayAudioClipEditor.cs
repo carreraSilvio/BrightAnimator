@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace BrightLib.Animation
+namespace BrightLib.Animation.Runtime
 {
     [CustomEditor(typeof(PlayAudioClip))]
     [CanEditMultipleObjects]
@@ -12,7 +12,6 @@ namespace BrightLib.Animation
 
         private void OnEnable()
         {
-            if (serializedObject == null) return;
             _clip = serializedObject.FindProperty("clip");
             _clips = serializedObject.FindProperty("clips");
         }
@@ -23,6 +22,7 @@ namespace BrightLib.Animation
 
             var tObject = (target as PlayAudioClip);
 
+            EditorGUI.BeginChangeCheck();
             tObject.useMultiple = EditorGUILayout.Toggle("Use Multiple", tObject.useMultiple);
             if (!tObject.useMultiple)
             {
@@ -47,7 +47,11 @@ namespace BrightLib.Animation
                 EditorGUI.indentLevel--;
             }
 
-            serializedObject.ApplyModifiedProperties();
+            if(EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
+            
         }
     }
 }
