@@ -1,0 +1,26 @@
+{
+  "name": "com.brightlib.animator",
+  "version": "1.0.0",
+  "displayName": "Bright Animator",
+  "description": "Extentions for the Unity Animator. Play audio inside the animator.",
+  "unity": "2018.2",
+  "unityRelease": "15f1",
+  "author": 
+  {
+    "name": "Silvio Carréra",
+    "url": "https://github.com/carreraSilvio/BrightAnimator"
+  },
+  "samples": 
+  [
+    {
+        "displayName": "Orc Sample",
+        "description": "Play a grunt and sword swoosh when entering attack state.",
+        "path": "Samples~/01 - OrcSample"
+    },
+    {
+        "displayName": "Knight Sample",
+        "description": "Play repeating footsteps while in walk state.",
+        "path": "Samples~/02 - KnightSample"
+    }
+  ]
+}
