@@ -73,7 +73,7 @@ MonoBehaviour:
   clips: []
   condition: 0
   delayer:
-    delayType: 0
+    delayType: 1
     timer:
       loops: 0
       time: 0.1
