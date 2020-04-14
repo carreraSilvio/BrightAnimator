@@ -3,8 +3,30 @@ using System;
 
 namespace BrightLib.Animation.Runtime
 {
+	public enum DelayType { Time, Frame }
+
+	[System.Serializable]
+	public class Delayer
+	{
+		public DelayType delayType;
+		public FrameTimer frameTimer;
+		public Timer timer;
+
+		public bool IsComplete()
+		{
+			if (delayType == DelayType.Time) return timer.IsComplete();
+
+			return frameTimer.IsComplete();
+		}
+	}
+
 	public class PlayAudioClip : StateMachineBehaviour
-	{ 
+	{
+		public Delayer delayer;
+		//public DelayType delayType;
+		//public FrameTimer delayFrameTimer;
+		//public Timer delayTimer;
+
 		public float delay;
 		public PlayCondition condition;
 		public float frequency;
@@ -15,7 +37,7 @@ namespace BrightLib.Animation.Runtime
 
 		private AudioSource _source;
 
-		private float _lastUpdateTime;
+		private float _lastTimeExecuted;
 		private int _clipIndex;
 		private bool _valid;
 		private bool _executed;
@@ -26,7 +48,7 @@ namespace BrightLib.Animation.Runtime
 		{
 			Validate(animator, stateInfo);
 
-			_lastUpdateTime = Time.time;
+			_lastTimeExecuted = Time.time;
 			_executed = false;
 		}
 
@@ -34,15 +56,16 @@ namespace BrightLib.Animation.Runtime
 		{
 			if (condition == PlayCondition.OnEnter)
 			{
-				if (Time.time - _lastUpdateTime < delay) return;
 				if (_executed) return;
+					
+				//if (Time.time - _lastTimeExecuted < delay) return;
 
 				Execute();
 			}
 			else if (condition == PlayCondition.OnUpdate)
 			{
-				if (Time.time - _lastUpdateTime < frequency) return;
-				_lastUpdateTime = Time.time;
+				if (Time.time - _lastTimeExecuted < frequency) return;
+				_lastTimeExecuted = Time.time;
 
 				Execute();
 			}			

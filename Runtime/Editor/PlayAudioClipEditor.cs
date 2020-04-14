@@ -1,5 +1,4 @@
 ﻿using UnityEditor;
-using UnityEngine;
 
 namespace BrightLib.Animation.Runtime
 {
@@ -26,7 +25,7 @@ namespace BrightLib.Animation.Runtime
             tObject.useMultiple = EditorGUILayout.Toggle("Use Multiple", tObject.useMultiple);
             if (!tObject.useMultiple)
             {
-                EditorGUILayout.PropertyField(_clip, true);
+                EditorGUILayout.PropertyField(_clip);
             }
             else
             {
@@ -37,7 +36,16 @@ namespace BrightLib.Animation.Runtime
             if (tObject.condition == PlayCondition.OnEnter)
             {
                 EditorGUI.indentLevel++;
-                tObject.delay = EditorGUILayout.FloatField("Delay", tObject.delay);
+                tObject.delay = EditorGUILayout.FloatField("[OLD]delay", tObject.delay);
+                //tObject.delayType = (DelayType)EditorGUILayout.EnumPopup("Delay Type", tObject.delayType);
+                //if (tObject.delayType == DelayType.Time)
+                //{
+                //    tObject.delayTimer.time = EditorGUILayout.FloatField("Time", tObject.delayTimer.time);
+                //}
+                //else
+                //{
+                //    tObject.delayFrameTimer.frame = EditorGUILayout.IntField("Frame", tObject.delayFrameTimer.frame);
+                //}
                 EditorGUI.indentLevel--;
             }
             else if (tObject.condition == PlayCondition.OnUpdate)
