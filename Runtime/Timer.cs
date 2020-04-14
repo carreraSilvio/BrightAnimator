@@ -8,18 +8,29 @@ namespace BrightLib.Animation.Runtime
 		public float time;
 		private float _lastTimeExecuted;
 
-		public override bool IsComplete()
-		{
-			var result = Time.time - _lastTimeExecuted >= time;
-
-			if (loops) Reset();
-			return result;
-		}
-
 		public override void Reset()
 		{
 			_lastTimeExecuted = Time.time;
+			_completed = false;
 		}
+
+		public override void Update()
+		{
+			if (_completed) return;
+
+			_completed = Time.time - _lastTimeExecuted >= time;
+
+			if (_completed)
+			{
+				FireOnComplete();
+				if (loops)
+				{ 
+					Reset();
+				}
+			}
+		}
+
+		
 	}
 
 }

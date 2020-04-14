@@ -11,11 +11,23 @@ namespace BrightLib.Animation.Runtime
 		public override void Reset()
 		{
 			_lastFrameExecuted = Time.frameCount;
+			_completed = false;
 		}
 
-		public override bool IsComplete()
+		public override void Update()
 		{
-			return (Time.frameCount - _lastFrameExecuted >= frame);
+			if (_completed) return;
+
+			_completed = Time.frameCount - _lastFrameExecuted >= frame;
+
+			if (_completed)
+			{
+				FireOnComplete();
+				if (loops)
+				{
+					Reset();
+				}
+			}
 		}
 	}
 

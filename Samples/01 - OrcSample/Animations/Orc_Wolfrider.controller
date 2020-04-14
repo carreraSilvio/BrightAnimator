@@ -12,12 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4f48f952730a64eafc498c42bd2313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.3
-  condition: 0
-  frequency: 0
   useMultiple: 0
   clip: {fileID: 8300000, guid: 6771c405f7aa503408e069265571a56a, type: 3}
   clips: []
+  condition: 0
+  delayer:
+    delayType: 1
+    timer:
+      loops: 0
+      time: 0
+    frameTimer:
+      loops: 0
+      frame: 25
+  frequencyTimer:
+    loops: 0
+    time: 0
 --- !u!1102 &-4188121060872731806
 AnimatorState:
   serializedVersion: 5
@@ -31,8 +40,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: 1692897210144060319}
   m_StateMachineBehaviours:
-  - {fileID: -6840236798086268102}
   - {fileID: -3003612010528489462}
+  - {fileID: -6840236798086268102}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -59,12 +68,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4f48f952730a64eafc498c42bd2313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.1
-  condition: 0
-  frequency: 0
   useMultiple: 0
   clip: {fileID: 8300000, guid: dfbeff006c0dbdb49a6e403a82ba3c69, type: 3}
   clips: []
+  condition: 0
+  delayer:
+    delayType: 0
+    timer:
+      loops: 0
+      time: 0.1
+    frameTimer:
+      loops: 0
+      frame: 10
+  frequencyTimer:
+    loops: 0
+    time: 0
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

@@ -1,79 +1,58 @@
 ﻿using UnityEngine;
-using System;
 
 namespace BrightLib.Animation.Runtime
 {
-	public enum DelayType { Time, Frame }
-
-	[System.Serializable]
-	public class Delayer
-	{
-		public DelayType delayType;
-		public FrameTimer frameTimer;
-		public Timer timer;
-
-		public bool IsComplete()
-		{
-			if (delayType == DelayType.Time) return timer.IsComplete();
-
-			return frameTimer.IsComplete();
-		}
-	}
-
 	public class PlayAudioClip : StateMachineBehaviour
 	{
-		public Delayer delayer;
-		//public DelayType delayType;
-		//public FrameTimer delayFrameTimer;
-		//public Timer delayTimer;
-
-		public float delay;
-		public PlayCondition condition;
-		public float frequency;
-
 		public bool useMultiple;
 		public AudioClip clip;
 		public AudioClip[] clips;
 
+		public PlayCondition condition;
+		public Delayer delayer;
+		public Timer frequencyTimer;
+
 		private AudioSource _source;
 
-		private float _lastTimeExecuted;
 		private int _clipIndex;
 		private bool _valid;
-		private bool _executed;
 
-		
+		private void OnEnable()
+		{
+			delayer.OnComplete += Execute;
+			frequencyTimer.onComplete += Execute;
+		}
+
+		private void OnDisable()
+		{
+			delayer.OnComplete -= Execute;
+			frequencyTimer.onComplete -= Execute;
+		}
 
 		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			Validate(animator, stateInfo);
 
-			_lastTimeExecuted = Time.time;
-			_executed = false;
+			delayer.Reset();
+			frequencyTimer.Reset();
+			frequencyTimer.loops = true;
 		}
 
 		public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
 			if (condition == PlayCondition.OnEnter)
 			{
-				if (_executed) return;
-					
-				//if (Time.time - _lastTimeExecuted < delay) return;
-
-				Execute();
+				delayer.Update();
 			}
 			else if (condition == PlayCondition.OnUpdate)
 			{
-				if (Time.time - _lastTimeExecuted < frequency) return;
-				_lastTimeExecuted = Time.time;
-
-				Execute();
+				frequencyTimer.Update();
 			}			
 		}
 
 		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if(condition != PlayCondition.OnExit) return;
+			if (condition != PlayCondition.OnExit) return;
 			Execute();
 		}
 
@@ -83,7 +62,6 @@ namespace BrightLib.Animation.Runtime
 
 			var currClip = !useMultiple ? clip : clips[_clipIndex++ % clips.Length];
 			_source.PlayOneShot(currClip);
-			_executed = true;
 		}
 
 		private void Validate(Animator animator, AnimatorStateInfo stateInfo)

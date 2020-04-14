@@ -36,28 +36,28 @@ namespace BrightLib.Animation.Runtime
             if (tObject.condition == PlayCondition.OnEnter)
             {
                 EditorGUI.indentLevel++;
-                tObject.delay = EditorGUILayout.FloatField("[OLD]delay", tObject.delay);
-                //tObject.delayType = (DelayType)EditorGUILayout.EnumPopup("Delay Type", tObject.delayType);
-                //if (tObject.delayType == DelayType.Time)
-                //{
-                //    tObject.delayTimer.time = EditorGUILayout.FloatField("Time", tObject.delayTimer.time);
-                //}
-                //else
-                //{
-                //    tObject.delayFrameTimer.frame = EditorGUILayout.IntField("Frame", tObject.delayFrameTimer.frame);
-                //}
+                tObject.delayer.delayType = (DelayType)EditorGUILayout.EnumPopup("Delay Type", tObject.delayer.delayType);
+                if (tObject.delayer.delayType == DelayType.Time)
+                {
+                    tObject.delayer.timer.time = EditorGUILayout.FloatField("Time", tObject.delayer.timer.time);
+                }
+                else
+                {
+                    tObject.delayer.frameTimer.frame = EditorGUILayout.IntField("Frame", tObject.delayer.frameTimer.frame);
+                }
                 EditorGUI.indentLevel--;
             }
             else if (tObject.condition == PlayCondition.OnUpdate)
             {
                 EditorGUI.indentLevel++;
-                tObject.frequency = EditorGUILayout.FloatField("Frequency", tObject.frequency);
+                tObject.frequencyTimer.time = EditorGUILayout.FloatField("Frequency", tObject.frequencyTimer.time);
                 EditorGUI.indentLevel--;
             }
 
             if(EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
+                EditorUtility.SetDirty(tObject);
             }
             
         }
