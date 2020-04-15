@@ -2,7 +2,7 @@
 
 namespace BrightLib.Animation.Runtime
 {
-	public enum DelayType { Time, Frame }
+	public enum DelayType {Time, Frame }
 
 	[System.Serializable]
 	public class Delayer

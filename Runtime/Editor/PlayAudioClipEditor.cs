@@ -6,14 +6,14 @@ namespace BrightLib.Animation.Runtime
     [CanEditMultipleObjects]
     public class PlayAudioClipEditor : UnityEditor.Editor
     {
-        private SerializedProperty _clip;
-        private SerializedProperty _clips;
+        //private SerializedProperty _clip;
+        //private SerializedProperty _clips;
 
-        private void OnEnable()
-        {
-            _clip = serializedObject.FindProperty("clip");
-            _clips = serializedObject.FindProperty("clips");
-        }
+        //private void OnEnable()
+        //{
+        //    _clip = serializedObject.FindProperty("clip");
+        //    _clips = serializedObject.FindProperty("clips");
+        //}
 
         public override void OnInspectorGUI()
         {
@@ -25,11 +25,11 @@ namespace BrightLib.Animation.Runtime
             tObject.useMultiple = EditorGUILayout.Toggle("Use Multiple", tObject.useMultiple);
             if (!tObject.useMultiple)
             {
-                EditorGUILayout.PropertyField(_clip);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("clip"));
             }
             else
             {
-                EditorGUILayout.PropertyField(_clips, true);
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("clips"), true);
             }
             
             tObject.condition = (PlayCondition)EditorGUILayout.EnumPopup("Condition", tObject.condition);
@@ -41,7 +41,7 @@ namespace BrightLib.Animation.Runtime
                 {
                     tObject.delayer.timer.time = EditorGUILayout.FloatField("Time", tObject.delayer.timer.time);
                 }
-                else
+                else if(tObject.delayer.delayType == DelayType.Frame)
                 {
                     tObject.delayer.frameTimer.frame = EditorGUILayout.IntField("Frame", tObject.delayer.frameTimer.frame);
                 }
