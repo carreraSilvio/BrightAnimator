@@ -3,6 +3,9 @@ Extensions for the Unity Animator. Play audio inside the animator.
 
 ![Imgur](https://i.imgur.com/ZMv0kTI.gif)
 
+![Imgur](https://i.imgur.com/UE1GS90.gif)
+
+
 ## Features
 * Play audio when entering an animator state.
 * Add multiple audio clips to be played.
