@@ -1,7 +1,7 @@
 # Bright Animator
-Extentions for the Unity Animator. Play audio inside the animator.
+Extensions for the Unity Animator. Play audio inside the animator.
 
-![Imgur](https://i.imgur.com/BAJBQ3P.gif)
+![Imgur](https://i.imgur.com/ZMv0kTI.gif)
 
 ## Features
 * Play audio when entering an animator state.
