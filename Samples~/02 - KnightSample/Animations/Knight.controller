@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5062345024847567715
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4f48f952730a64eafc498c42bd2313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMultiple: 0
+  clip: {fileID: 8300000, guid: 45bac8a714865604eb8b986bcd3ddbad, type: 3}
+  clips: []
+  condition: 0
+  delayer:
+    delayType: 0
+    timer:
+      loops: 0
+      time: 0
+    frameTimer:
+      loops: 0
+      frame: 0
+  frequencyTimer:
+    loops: 0
+    time: 0
 --- !u!1102 &-4188121060872731806
 AnimatorState:
   serializedVersion: 5
@@ -14,6 +41,7 @@ AnimatorState:
   - {fileID: 6803625552982010832}
   m_StateMachineBehaviours:
   - {fileID: -3003612010528489462}
+  - {fileID: -5062345024847567715}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -45,13 +73,13 @@ MonoBehaviour:
   clips: []
   condition: 0
   delayer:
-    delayType: 1
+    delayType: 0
     timer:
       loops: 0
-      time: 0.1
+      time: 0.05
     frameTimer:
       loops: 0
-      frame: 10
+      frame: 5
   frequencyTimer:
     loops: 0
     time: 0
