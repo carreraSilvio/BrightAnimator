@@ -4,17 +4,8 @@ namespace BrightLib.Animation.Runtime
 {
     [CustomEditor(typeof(PlayAudioClip))]
     [CanEditMultipleObjects]
-    public class PlayAudioClipEditor : UnityEditor.Editor
+    public class PlayAudioClipEditor : Editor
     {
-        //private SerializedProperty _clip;
-        //private SerializedProperty _clips;
-
-        //private void OnEnable()
-        //{
-        //    _clip = serializedObject.FindProperty("clip");
-        //    _clips = serializedObject.FindProperty("clips");
-        //}
-
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -31,7 +22,7 @@ namespace BrightLib.Animation.Runtime
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("clips"), true);
             }
-            
+
             tObject.condition = (PlayCondition)EditorGUILayout.EnumPopup("Condition", tObject.condition);
             if (tObject.condition == PlayCondition.OnEnter)
             {
@@ -41,7 +32,7 @@ namespace BrightLib.Animation.Runtime
                 {
                     tObject.delayer.timer.time = EditorGUILayout.FloatField("Time", tObject.delayer.timer.time);
                 }
-                else if(tObject.delayer.delayType == DelayType.Frame)
+                else if (tObject.delayer.delayType == DelayType.Frame)
                 {
                     tObject.delayer.frameTimer.frame = EditorGUILayout.IntField("Frame", tObject.delayer.frameTimer.frame);
                 }
@@ -54,12 +45,12 @@ namespace BrightLib.Animation.Runtime
                 EditorGUI.indentLevel--;
             }
 
-            if(EditorGUI.EndChangeCheck())
+            if (EditorGUI.EndChangeCheck())
             {
                 serializedObject.ApplyModifiedProperties();
                 EditorUtility.SetDirty(tObject);
             }
-            
+
         }
     }
 }
