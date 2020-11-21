@@ -1,6 +1,6 @@
 {
   "name": "com.brightlib.animator",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "Bright Animator",
   "description": "Extentions for the Unity Animator. Play audio inside the animator.",
   "unity": "2018.2",

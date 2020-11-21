@@ -1,3 +1,8 @@
+## [1.1.0] - 2020-11-21
+
+### Fix
+* Separated editor code in proper assembly
+
 ## [1.0.0] - 2020-04-13
 
 ### New
