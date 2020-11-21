@@ -1,0 +1,17 @@
+{
+    "name": "BrightLib.Animator.Editor",
+    "references": [
+        "GUID:8943b29bdf2c46b4ea7c1279d3a38d54"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

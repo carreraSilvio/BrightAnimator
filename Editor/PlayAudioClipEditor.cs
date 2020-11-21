@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using BrightLib.Animation.Runtime;
+using UnityEditor;
 
-namespace BrightLib.Animation.Runtime
+namespace BrightLib.Animation.Editor
 {
     [CustomEditor(typeof(PlayAudioClip))]
     [CanEditMultipleObjects]
-    public class PlayAudioClipEditor : Editor
+    public class PlayAudioClipEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
